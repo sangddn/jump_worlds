@@ -10,25 +10,48 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
+import 'package:jump_worlds/src/database/database.dart' as _i7;
 import 'package:jump_worlds/src/pages/game_page/game_page.dart' as _i1;
 import 'package:jump_worlds/src/pages/home_page/home_page.dart' as _i2;
 import 'package:jump_worlds/src/pages/intro_page/intro_page.dart' as _i3;
-import 'package:jump_worlds/src/pages/room_page/room_page.dart' as _i4;
+import 'package:jump_worlds/src/pages/level_page/level_page.dart' as _i4;
 
 /// generated route for
 /// [_i1.GamePage]
-class GameRoute extends _i5.PageRouteInfo<void> {
-  const GameRoute({List<_i5.PageRouteInfo>? children})
-    : super(GameRoute.name, initialChildren: children);
+class GameRoute extends _i5.PageRouteInfo<GameRouteArgs> {
+  GameRoute({
+    _i6.Key? key,
+    required _i7.Game game,
+    List<_i5.PageRouteInfo>? children,
+  }) : super(
+         GameRoute.name,
+         args: GameRouteArgs(key: key, game: game),
+         initialChildren: children,
+       );
 
   static const String name = 'GameRoute';
 
   static _i5.PageInfo page = _i5.PageInfo(
     name,
     builder: (data) {
-      return const _i1.GamePage();
+      final args = data.argsAs<GameRouteArgs>();
+      return _i1.GamePage(key: args.key, game: args.game);
     },
   );
+}
+
+class GameRouteArgs {
+  const GameRouteArgs({this.key, required this.game});
+
+  final _i6.Key? key;
+
+  final _i7.Game game;
+
+  @override
+  String toString() {
+    return 'GameRouteArgs{key: $key, game: $game}';
+  }
 }
 
 /// generated route for
@@ -64,17 +87,38 @@ class IntroRoute extends _i5.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.RoomPage]
-class RoomRoute extends _i5.PageRouteInfo<void> {
-  const RoomRoute({List<_i5.PageRouteInfo>? children})
-    : super(RoomRoute.name, initialChildren: children);
+/// [_i4.LevelPage]
+class LevelRoute extends _i5.PageRouteInfo<LevelRouteArgs> {
+  LevelRoute({
+    _i6.Key? key,
+    required _i7.Difficulty difficulty,
+    List<_i5.PageRouteInfo>? children,
+  }) : super(
+         LevelRoute.name,
+         args: LevelRouteArgs(key: key, difficulty: difficulty),
+         initialChildren: children,
+       );
 
-  static const String name = 'RoomRoute';
+  static const String name = 'LevelRoute';
 
   static _i5.PageInfo page = _i5.PageInfo(
     name,
     builder: (data) {
-      return const _i4.RoomPage();
+      final args = data.argsAs<LevelRouteArgs>();
+      return _i4.LevelPage(key: args.key, difficulty: args.difficulty);
     },
   );
+}
+
+class LevelRouteArgs {
+  const LevelRouteArgs({this.key, required this.difficulty});
+
+  final _i6.Key? key;
+
+  final _i7.Difficulty difficulty;
+
+  @override
+  String toString() {
+    return 'LevelRouteArgs{key: $key, difficulty: $difficulty}';
+  }
 }

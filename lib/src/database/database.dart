@@ -8,8 +8,10 @@ part 'models/puzzle.dart';
 part 'models/game.dart';
 part 'models/game_state.dart';
 part 'implementations/database.dart';
+part 'extensions/game_info.dart';
 
-abstract interface class DatabaseInterface implements LocalKeyValueStore {
+abstract interface class DatabaseInterface
+    implements LocalKeyValueStore, GameLevelInfo {
   Future<void> initialize();
   void dispose();
 }
@@ -19,4 +21,11 @@ abstract interface class LocalKeyValueStore {
   Box<String> get stringRef;
   Box<double> get doubleRef;
   Box<DateTime> get dateTimeRef;
+}
+
+abstract interface class GameLevelInfo {
+  Game getGame(String id);
+  Game getGameAtLevel(Difficulty difficulty, int index);
+  int getGamesLeftForLevel(Difficulty difficulty);
+  int getTotalGamesForLevel(Difficulty difficulty);
 }
