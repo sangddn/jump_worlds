@@ -14,7 +14,7 @@ class BButton extends StatelessWidget {
     this.margin = EdgeInsets.zero,
     this.color,
     this.side = BorderSide.none,
-    this.cornerRadius = 8.0,
+    this.cornerRadius = 2.0,
     this.clipBehavior = Clip.antiAlias,
     this.tooltipTriggerMode = TooltipTriggerMode.longPress,
     this.tooltipPreferBelow,

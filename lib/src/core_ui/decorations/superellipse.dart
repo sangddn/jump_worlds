@@ -9,6 +9,10 @@ abstract final class Superellipse {
     side: side,
   );
 
+  static const border2 = RoundedSuperellipseBorder(
+    borderRadius: BorderRadius.all(Radius.circular(2.0)),
+  );
+
   static const border4 = RoundedSuperellipseBorder(
     borderRadius: BorderRadius.all(Radius.circular(4.0)),
   );

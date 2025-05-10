@@ -34,9 +34,9 @@ class AppRouter extends RootStackRouter {
           );
         },
       ),
-      CupertinoRoute<void>(path: 'home', page: HomeRoute.page),
-      CupertinoRoute<void>(path: 'game', page: GameRoute.page),
-      CupertinoRoute<void>(path: 'room', page: RoomRoute.page),
+      CupertinoRoute<void>(path: '/home', initial: true, page: HomeRoute.page),
+      CupertinoRoute<void>(path: '/game', page: GameRoute.page),
+      CupertinoRoute<void>(path: '/room', page: RoomRoute.page),
     ];
   }
 }

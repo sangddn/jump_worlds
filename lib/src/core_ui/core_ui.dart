@@ -12,6 +12,7 @@ import 'package:jovial_svg/jovial_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart' show SingleChildWidget;
 import 'package:smooth_sheets/smooth_sheets.dart';
+import 'package:soundpool/soundpool.dart';
 
 import '../animations/animations.dart';
 import '../database/database.dart';

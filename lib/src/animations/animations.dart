@@ -1,5 +1,4 @@
 export 'adapters/adapters.dart';
-export 'animated_state_provider.dart';
 export 'bouncing_object.dart';
 export 'effects.dart';
 export 'hero.dart';

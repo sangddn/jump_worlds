@@ -94,15 +94,15 @@ extension type PTextTheme(TextTheme textTheme) {
       PTextTheme(TextTheme.of(context));
 
   TextStyle get display1 =>
-      textTheme.displayLarge!.apply(letterSpacingDelta: -1.5).addWeight(3.0);
+      textTheme.displayLarge!.apply(letterSpacingDelta: -1.5).rubikMono();
   TextStyle get display2 =>
-      textTheme.displayMedium!.apply(letterSpacingDelta: -1.5).addWeight(2.5);
+      textTheme.displayMedium!.apply(letterSpacingDelta: -1.5).rubikMono();
   TextStyle get display3 =>
-      textTheme.displaySmall!.apply(letterSpacingDelta: -2).addWeight(2.0);
+      textTheme.displaySmall!.apply(letterSpacingDelta: -2).rubikMono();
   TextStyle get h1 =>
-      textTheme.headlineLarge!.apply(letterSpacingDelta: -1.5).addWeight(3.0);
+      textTheme.headlineLarge!.apply(letterSpacingDelta: -1.5).rubikMono();
   TextStyle get h2 =>
-      textTheme.headlineMedium!.apply(letterSpacingDelta: -1.5).addWeight(2.5);
+      textTheme.headlineMedium!.apply(letterSpacingDelta: -1.5).rubikMono();
   TextStyle get h3 =>
       textTheme.headlineSmall!.apply(letterSpacingDelta: -1.5).addWeight(2.0);
   TextStyle get h4 =>

@@ -11,7 +11,7 @@ class CButton extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.color,
     this.side = BorderSide.none,
-    this.cornerRadius = 8.0,
+    this.cornerRadius = 2.0,
     this.clipBehavior = Clip.antiAlias,
     this.pressedOpacity = 0.4,
     this.tooltipTriggerMode = TooltipTriggerMode.longPress,
