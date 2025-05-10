@@ -15,10 +15,10 @@ migration:
     - platform: root
       create_revision: 3bd718ee44049e25d33327ee9886ec30c97ffa33
       base_revision: 3bd718ee44049e25d33327ee9886ec30c97ffa33
-    - platform: macos
+    - platform: android
       create_revision: 3bd718ee44049e25d33327ee9886ec30c97ffa33
       base_revision: 3bd718ee44049e25d33327ee9886ec30c97ffa33
-    - platform: web
+    - platform: ios
       create_revision: 3bd718ee44049e25d33327ee9886ec30c97ffa33
       base_revision: 3bd718ee44049e25d33327ee9886ec30c97ffa33
 
