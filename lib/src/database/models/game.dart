@@ -14,5 +14,5 @@ class Game with GameMappable {
   final List<int> grid;
   final List<Puzzle> puzzles;
 
-  int get numColumns => grid.length ~/ numRows;
+  int get numCols => grid.length ~/ numRows;
 }

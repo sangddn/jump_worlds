@@ -16,13 +16,14 @@ class _Head extends StatelessWidget {
       bottom: false,
       sliver: SuperSliverList.list(
         children: [
-          const Gap(16.0),
+          const Gap(60.0),
           ShaderMask(
-            shaderCallback: (rect) => LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [color.shade30, color.tint10],
-            ).createShader(rect),
+            shaderCallback:
+                (rect) => LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [color.tint70, color.tint30],
+                ).createShader(rect),
             blendMode: BlendMode.srcIn,
             child: Text(
               difficulty.name,
@@ -33,7 +34,7 @@ class _Head extends StatelessWidget {
           Text(
             '$gamesDone / $gamesTotal',
             style: context.textTheme.h3.withColor(
-              difficulty.backgroundColor.resolveFrom(context),
+              difficulty.backgroundColor.resolveFrom(context).tint70,
             ),
             textAlign: TextAlign.center,
           ),

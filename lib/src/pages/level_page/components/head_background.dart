@@ -5,7 +5,7 @@ class _HeadBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => RuledBackground(
-    extent: 200.0,
+    extent: 800.0,
     color: context.read<Difficulty>().backgroundColor,
   );
 }

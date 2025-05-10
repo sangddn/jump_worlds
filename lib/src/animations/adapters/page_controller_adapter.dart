@@ -13,10 +13,12 @@ class PageControllerAdapter extends Adapter {
   PageControllerAdapter(
     this.pageController, {
     required this.page,
+    this.transform,
     super.direction,
   });
 
   final PageController pageController;
+  final double Function(double currentPage, double value)? transform;
   final int page;
 
   @override
@@ -34,18 +36,22 @@ class PageControllerAdapter extends Adapter {
 
   double? _getValue() {
     if (!pageController.hasClients) return null;
-    try {
-      final p = pageController.page;
-      // ignore if out of 0..1 range
-      if (p == null || p < page - 1 || p > page + 1) return null;
-      // if moving forward from page - 1 to page, interpret as 0 to 1
-      if (p <= page) return 1.0 - (page - p);
-      // if moving backward from page + 1 to page, interpret as 1 to 0
-      return page - p;
-    } catch (_) {
-      // ignore page controller assertions
-      return null;
-    }
+    final p = pageController.page;
+    final v = () {
+      try {
+        // ignore if out of 0..1 range
+        if (p == null || p < page - 1 || p > page + 1) return null;
+        // if moving forward from page - 1 to page, interpret as 0 to 1
+        if (p <= page) return 1.0 - (page - p);
+        // if moving backward from page + 1 to page, interpret as 1 to 0
+        return page - p;
+      } catch (_) {
+        // ignore page controller assertions
+        return null;
+      }
+    }();
+    if (v == null || p == null) return null;
+    return transform?.call(p, v) ?? v;
   }
 }
 
@@ -57,6 +63,7 @@ extension PageControllerExtension on Widget {
     PageController pageController, {
     required int page,
     Direction? direction,
+    double Function(double currentPage, double value)? transform,
     // ignore: strict_raw_type
     List<Effect>? effects,
     AnimateCallback? onInit,
@@ -65,7 +72,11 @@ extension PageControllerExtension on Widget {
     bool autoPlay = true,
     AnimationController? controller,
   }) => animate(
-    adapter: PageControllerAdapter(pageController, page: page),
+    adapter: PageControllerAdapter(
+      pageController,
+      page: page,
+      transform: transform,
+    ),
     effects: effects,
     onInit: onInit,
     onPlay: onPlay,

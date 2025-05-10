@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
+import '../../animations/animations.dart';
 import '../../app/app.dart';
 import '../../components/components.dart';
 import '../../core_ui/core_ui.dart';
@@ -11,6 +13,9 @@ import '../../utils/colors.dart';
 
 part 'components/head.dart';
 part 'components/head_background.dart';
+part 'components/game_wheel.dart';
+
+part 'logic/page_controller.dart';
 
 @RoutePage()
 class LevelPage extends MultiProviderWidget {
@@ -20,7 +25,12 @@ class LevelPage extends MultiProviderWidget {
 
   @override
   List<SingleChildWidget> getProviders(BuildContext context) {
-    return [Provider<Difficulty>.value(value: difficulty)];
+    return [
+      Provider<Difficulty>.value(value: difficulty),
+      ChangeNotifierProvider<_GameWheelController>(
+        create: (_) => _GameWheelController(),
+      ),
+    ];
   }
 
   @override
@@ -30,7 +40,9 @@ class LevelPage extends MultiProviderWidget {
         clipBehavior: Clip.none,
         children: [
           _HeadBackground(),
-          CustomScrollView(slivers: [_Head()]),
+          CustomScrollView(
+            slivers: [_Head(), SliverFillRemaining(child: _GameWheel())],
+          ),
         ],
       ),
     );

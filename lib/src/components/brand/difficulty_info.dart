@@ -10,3 +10,7 @@ extension DifficultyInfo on Difficulty {
     Difficulty.hard => PColors.red700,
   };
 }
+
+extension GameDifficultyInfo on Difficulty {
+  
+}
