@@ -37,7 +37,11 @@ mixin LocalDbMixin implements LocalKeyValueStore {
   late final Box<DateTime> dateTimeRef;
 
   Future<void> initializeLocalDb() async {
-    Hive.init(await _getPath());
+    if (kIsWeb) {
+      Hive.init(null);
+    } else {
+      Hive.init(await _getPath());
+    }
     boolRef = await Hive.openBox<bool>('boolMap');
     stringRef = await Hive.openBox<String>('stringMap');
     doubleRef = await Hive.openBox<double>('doubleMap');
