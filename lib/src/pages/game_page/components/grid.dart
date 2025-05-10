@@ -31,7 +31,8 @@ class _Grid extends StatelessWidget {
 }
 
 class _CellBackground extends StatelessWidget {
-  const _CellBackground(this.height, this.width, this.node);
+  _CellBackground(this.height, this.width, this.node)
+    : super(key: ValueKey('background-$node'));
 
   final double height;
   final double width;

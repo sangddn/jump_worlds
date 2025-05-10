@@ -21,8 +21,16 @@ class GameStateNotifier extends ValueNotifier<GameState> {
     final nextMove = legalMoves.firstWhere(
       (move) => current.directionTo(move) == axis,
     );
-    debugPrint('moveByAxis. nextMove: $nextMove.');
-    move(nextMove);
+    final lastMove =
+        value.length > 1 ? value.elementAtOrNull(value.length - 2) : null;
+    if (lastMove != null && lastMove == nextMove) {
+      debugPrint('moveByAxis. lastMove == nextMove. Undoing last move.');
+      // undo the last move
+      value = value.removeLast();
+    } else {
+      debugPrint('moveByAxis. nextMove: $nextMove.');
+      move(nextMove);
+    }
   }
 
   bool isSolved() {
@@ -48,6 +56,7 @@ class GameStateNotifier extends ValueNotifier<GameState> {
   bool isBurger(Node node) => currentNode == node;
 
   IList<Node> getLegalMoves() {
+    if (isSolved()) return const IList.empty();
     final allMoves = [...game.puzzlesMap.keys, game.endPoint, game.firstPoint];
 
     final current = value.last;
@@ -63,29 +72,40 @@ class GameStateNotifier extends ValueNotifier<GameState> {
       (move) => (move.col == current.col) != (move.row == current.row),
     );
 
+    debugPrint('orthogonalMoves: $orthogonalMoves.');
+
     final notVisited = orthogonalMoves.where((move) => !visited.contains(move));
 
+    debugPrint('notVisited: $notVisited.');
+
     // Among notVisited, we only the closest in each orthogonal direction
-    final closestMoves = MoveDirection.values.map((direction) {
-      final eligible = notVisited.where(
-        (move) => move.directionTo(current) == direction,
-      );
-      if (eligible.isEmpty) return null;
-      return eligible.reduce(
-        (a, b) =>
-            a.orthogonalDistanceTo(current) < b.orthogonalDistanceTo(current)
-                ? a
-                : b,
-      );
-    }).nonNulls;
+    final closestMoves =
+        MoveDirection.values.map((direction) {
+          final eligible = notVisited.where(
+            (move) => move.directionTo(current) == direction,
+          );
+          if (eligible.isEmpty) return null;
+          return eligible.reduce(
+            (a, b) =>
+                a.orthogonalDistanceTo(current) <
+                        b.orthogonalDistanceTo(current)
+                    ? a
+                    : b,
+          );
+        }).nonNulls;
+
+    debugPrint('closestMoves: $closestMoves.');
 
     // Among the closest moves, we only add the ones that are not shadowed by
     // the previous move (if going in this direction, interpret as undo)
     final legalMoves = closestMoves.where((move) {
-      final prevMove = value.elementAtOrNull(value.length - 2);
+      final prevMove =
+          value.length > 1 ? value.elementAtOrNull(value.length - 2) : null;
       if (prevMove == null) return true;
       return current.directionTo(prevMove) != current.directionTo(move);
     });
+
+    debugPrint('legalMoves: $legalMoves.');
 
     moves.addAll(legalMoves);
 

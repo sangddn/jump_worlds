@@ -8,6 +8,7 @@ class Puzzle with PuzzleMappable {
     required this.secondWord,
     required this.thirdWord,
     required this.difficulty,
+    required this.asset,
   });
 
   final String id;
@@ -15,6 +16,7 @@ class Puzzle with PuzzleMappable {
   final String secondWord;
   final String thirdWord;
   final Difficulty difficulty;
+  final UiAsset asset;
 }
 
 @MappableEnum()

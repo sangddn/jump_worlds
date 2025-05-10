@@ -82,6 +82,7 @@ const _mockGame = Game(
       secondWord: 'bank',
       thirdWord: 'money',
       difficulty: Difficulty.easy,
+      asset: UiAsset.bun,
     ),
     Puzzle(
       id: '2',
@@ -89,6 +90,7 @@ const _mockGame = Game(
       secondWord: 'bat',
       thirdWord: 'baseball',
       difficulty: Difficulty.easy,
+      asset: UiAsset.bun,
     ),
     Puzzle(
       id: '3',
@@ -96,12 +98,14 @@ const _mockGame = Game(
       secondWord: 'trunk',
       thirdWord: 'car',
       difficulty: Difficulty.easy,
+      asset: UiAsset.bun,
     ),
     Puzzle(
       id: '4',
       firstWord: 'galaxy',
       secondWord: 'star',
       thirdWord: 'movie',
+      asset: UiAsset.bun,
       difficulty: Difficulty.easy,
     ),
     Puzzle(
@@ -109,6 +113,7 @@ const _mockGame = Game(
       firstWord: 'tree',
       secondWord: 'bark',
       thirdWord: 'dog',
+      asset: UiAsset.bun,
       difficulty: Difficulty.easy,
     ),
     Puzzle(
@@ -116,6 +121,7 @@ const _mockGame = Game(
       firstWord: 'tree',
       secondWord: 'branch',
       thirdWord: 'git',
+      asset: UiAsset.bun,
       difficulty: Difficulty.easy,
     ),
   ],

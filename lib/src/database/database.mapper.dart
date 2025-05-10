@@ -85,6 +85,8 @@ class PuzzleMapper extends ClassMapperBase<Puzzle> {
   static Difficulty _$difficulty(Puzzle v) => v.difficulty;
   static const Field<Puzzle, Difficulty> _f$difficulty =
       Field('difficulty', _$difficulty);
+  static UiAsset _$asset(Puzzle v) => v.asset;
+  static const Field<Puzzle, UiAsset> _f$asset = Field('asset', _$asset);
 
   @override
   final MappableFields<Puzzle> fields = const {
@@ -93,6 +95,7 @@ class PuzzleMapper extends ClassMapperBase<Puzzle> {
     #secondWord: _f$secondWord,
     #thirdWord: _f$thirdWord,
     #difficulty: _f$difficulty,
+    #asset: _f$asset,
   };
 
   static Puzzle _instantiate(DecodingData data) {
@@ -101,7 +104,8 @@ class PuzzleMapper extends ClassMapperBase<Puzzle> {
         firstWord: data.dec(_f$firstWord),
         secondWord: data.dec(_f$secondWord),
         thirdWord: data.dec(_f$thirdWord),
-        difficulty: data.dec(_f$difficulty));
+        difficulty: data.dec(_f$difficulty),
+        asset: data.dec(_f$asset));
   }
 
   @override
@@ -155,7 +159,8 @@ abstract class PuzzleCopyWith<$R, $In extends Puzzle, $Out>
       String? firstWord,
       String? secondWord,
       String? thirdWord,
-      Difficulty? difficulty});
+      Difficulty? difficulty,
+      UiAsset? asset});
   PuzzleCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -171,13 +176,15 @@ class _PuzzleCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Puzzle, $Out>
           String? firstWord,
           String? secondWord,
           String? thirdWord,
-          Difficulty? difficulty}) =>
+          Difficulty? difficulty,
+          UiAsset? asset}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (firstWord != null) #firstWord: firstWord,
         if (secondWord != null) #secondWord: secondWord,
         if (thirdWord != null) #thirdWord: thirdWord,
-        if (difficulty != null) #difficulty: difficulty
+        if (difficulty != null) #difficulty: difficulty,
+        if (asset != null) #asset: asset
       }));
   @override
   Puzzle $make(CopyWithData data) => Puzzle(
@@ -185,7 +192,8 @@ class _PuzzleCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Puzzle, $Out>
       firstWord: data.get(#firstWord, or: $value.firstWord),
       secondWord: data.get(#secondWord, or: $value.secondWord),
       thirdWord: data.get(#thirdWord, or: $value.thirdWord),
-      difficulty: data.get(#difficulty, or: $value.difficulty));
+      difficulty: data.get(#difficulty, or: $value.difficulty),
+      asset: data.get(#asset, or: $value.asset));
 
   @override
   PuzzleCopyWith<$R2, Puzzle, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>

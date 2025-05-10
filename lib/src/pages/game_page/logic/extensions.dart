@@ -14,7 +14,7 @@ extension GestureHandlingContext on BuildContext {
     var shouldMove = false;
     if (velocity.pixelsPerSecond.distance > 1000) {
       shouldMove = true;
-    } else if (delta > 100) {
+    } else if (delta.abs() > 100) {
       shouldMove = true;
     }
     if (shouldMove) {

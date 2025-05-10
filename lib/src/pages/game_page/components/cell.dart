@@ -1,8 +1,7 @@
 part of '../game_page.dart';
 
 class _Cell extends StatelessWidget {
-  _Cell(this.cellHeight, this.cellWidth, this.node)
-    : super(key: ValueKey(node));
+  const _Cell(this.cellHeight, this.cellWidth, this.node);
 
   final double cellHeight;
   final double cellWidth;
@@ -16,10 +15,11 @@ class _Cell extends StatelessWidget {
         isBurger
             ? const _Burger()
             : isPuzzle
-            ? const _PuzzleCell()
+            ? _PuzzleCell(node)
             : const SizedBox.shrink();
     final offset = isBurger ? context.watchGestureDetails().$1 : Offset.zero;
     return APositionedDirectional(
+      key: ValueKey('cell-$node'),
       start: cellWidth * node.col + offset.dx,
       top: cellHeight * node.row + offset.dy,
       width: cellWidth,
