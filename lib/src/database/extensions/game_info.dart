@@ -5,8 +5,14 @@ extension GameLevelInfoX on DatabaseInterface {
       getTotalGamesForLevel(difficulty) - getGamesLeftForLevel(difficulty);
 
   String describeDifficulty(Difficulty difficulty) => switch (difficulty) {
-        Difficulty.easy => '4x3',
-        Difficulty.medium => '5x4',
-        Difficulty.hard => '6x5',
-      };
+    Difficulty.easy => '4x3',
+    Difficulty.medium => '5x4',
+    Difficulty.hard => '6x5',
+  };
+}
+
+extension GameInfoX on Game {
+  double getMaxPossibleScore() {
+    return puzzles.fold(0, (sum, puzzle) => sum + puzzle.score);
+  }
 }

@@ -29,18 +29,12 @@ class _GameItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          RepresentativeGrid(game: game)
-              .animateWithPageView(
-                context.read<_GameWheelController>(),
-                page: index,
-                transform: (p, v) {
-                  debugPrint('i: $index, p: $p, v: $v');
-                  return index < p ? (v + .1) : (-v - .1);
-                },
-              )
-              .rotate(),
+          RepresentativeGrid(game: game),
           const Gap(32.0),
-          RaisedButton(onTap: () {}, child: const Text('Play')),
+          RaisedButton(
+            onTap: () => context.router.push(GameRoute(game: game)),
+            child: const Text('Play'),
+          ),
         ],
       ),
     );

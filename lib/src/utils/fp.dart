@@ -190,6 +190,24 @@ extension Enumerate<T> on Iterable<T> {
     }
   }
 
+  /// Finds the index of the n-th element that satisfies the [test] function.
+  ///
+  /// Both [test] and [n] are 0-indexed.
+  int indexWhereNth(bool Function(int index, T value) test, int n) {
+    var count = 0;
+    var index = 0;
+    for (final item in this) {
+      if (test(index, item)) {
+        if (count == n) {
+          return index;
+        }
+        count++;
+      }
+      index++;
+    }
+    return -1;
+  }
+
   /// A version of [Iterable.where] that returns an iterable along with the index.
   ///
   /// Example:

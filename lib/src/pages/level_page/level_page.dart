@@ -9,6 +9,7 @@ import '../../app/app.dart';
 import '../../components/components.dart';
 import '../../core_ui/core_ui.dart';
 import '../../database/database.dart';
+import '../../router/router.gr.dart';
 import '../../utils/colors.dart';
 
 part 'components/head.dart';
